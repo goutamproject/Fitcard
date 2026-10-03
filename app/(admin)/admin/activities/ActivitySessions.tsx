@@ -97,26 +97,26 @@ export function ActivitySessions({ activityId }: ActivitySessionsProps) {
 
       {/* Past Sessions - Collapsed by default */}
       {pastSessions.length > 0 && (
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="past-sessions" className="border-none">
-            <AccordionTrigger className="py-2 text-sm font-medium text-muted-foreground hover:no-underline">
-              Past Sessions ({pastSessions.length})
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="space-y-2 pt-2">
-                {pastSessions.map((session) => (
-                  <SessionItem
-                    key={session._id}
-                    session={session}
-                    onDelete={handleDelete}
-                    isPast
-                  />
-                ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      )}
+  <Accordion multiple={false} className="w-full">
+    <AccordionItem value="past-sessions" className="border-none">
+      <AccordionTrigger className="py-2 text-sm font-medium text-muted-foreground hover:no-underline">
+        Past Sessions ({pastSessions.length})
+      </AccordionTrigger>
+      <AccordionContent>
+        <div className="space-y-2 pt-2">
+          {pastSessions.map((session) => (
+            <SessionItem
+              key={session._id}
+              session={session}
+              onDelete={handleDelete}
+              isPast
+            />
+          ))}
+        </div>
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+)}
     </div>
   );
 }

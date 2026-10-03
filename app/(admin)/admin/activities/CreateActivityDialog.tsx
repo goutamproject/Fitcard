@@ -66,12 +66,14 @@ export function CreateActivityDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          New Activity
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+  render={
+    <Button>
+      <Plus className="mr-2 h-4 w-4" />
+      New Activity
+    </Button>
+  }
+/>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Create New Activity</DialogTitle>
@@ -118,7 +120,7 @@ export function CreateActivityDialog() {
               <Select
                 value={formData.tierLevel}
                 onValueChange={(value) =>
-                  setFormData({ ...formData, tierLevel: value })
+                  setFormData({ ...formData, tierLevel: value??"basic" })
                 }
               >
                 <SelectTrigger>
