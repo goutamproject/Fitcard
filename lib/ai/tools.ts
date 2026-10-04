@@ -331,62 +331,62 @@ export const getUserBookings = tool({
         "The user's Clerk ID from the system context. Extract this from the system message."
       ),
   }),
-  execute: async ({ type = "upcoming", clerkId }) => {
-    if (!clerkId) {
-      return {
-        error: "User not authenticated",
-        count: 0,
-        bookings: [],
-      };
-    }
-
-    const query =
-      type === "past"
-        ? AI_USER_PAST_BOOKINGS_QUERY
-        : type === "all"
-        ? AI_USER_ALL_BOOKINGS_QUERY
-        : AI_USER_UPCOMING_BOOKINGS_QUERY;
-
-    const bookings = await client.fetch(query, { clerkId });
-
+ execute: async ({ type = "upcoming", clerkId }) => {
+  if (!clerkId) {
     return {
-      count: bookings.length,
-      type,
-      bookings: bookings.map(
-        (b: {
-          _id: string;
-          status: string;
-          createdAt?: string;
-          attendedAt?: string;
-          classSession?: {
-            _id: string;
-            startTime: string;
-            activity?: {
-              name: string;
-              instructor: string;
-              duration: number;
-            };
-            venue?: {
-              name: string;
-              city: string;
-            };
-          };
-        }) => ({
-          id: b._id,
-          sessionId: b.classSession?._id,
-          status: b.status,
-          bookedAt: b.createdAt,
-          attendedAt: b.attendedAt,
-          class: b.classSession?.activity?.name,
-          instructor: b.classSession?.activity?.instructor,
-          duration: b.classSession?.activity?.duration,
-          dateTime: b.classSession?.startTime,
-          venue: b.classSession?.venue?.name,
-          city: b.classSession?.venue?.city,
-        })
-      ),
+      error: "User not authenticated",
+      count: 0,
+      bookings: [],
     };
-  },
+  }
+
+  const query =
+    type === "past"
+      ? AI_USER_PAST_BOOKINGS_QUERY
+      : type === "all"
+      ? AI_USER_ALL_BOOKINGS_QUERY
+      : AI_USER_UPCOMING_BOOKINGS_QUERY;
+
+  const bookings = await client.fetch(query, { clerkId });
+
+  return {
+    count: bookings.length,
+    type,
+    bookings: bookings.map(
+  (b: {
+    _id: string;
+    status: string | null;
+    createdAt?: string | null;
+    attendedAt?: string | null;
+    classSession: {
+      _id: string;
+      startTime: string | null;
+      activity: {
+        name: string | null;
+        instructor: string | null;
+        duration: number | null;
+      } | null;
+      venue: {
+        name: string | null;
+        city: string | null;
+      } | null;
+    } | null;
+  }) => ({
+    id: b._id,
+    sessionId: b.classSession?._id,
+    status: b.status ?? "unknown",
+    bookedAt: b.createdAt ?? undefined,
+    attendedAt: b.attendedAt ?? undefined,
+    class: b.classSession?.activity?.name,
+    instructor: b.classSession?.activity?.instructor,
+    duration: b.classSession?.activity?.duration,
+    dateTime: b.classSession?.startTime,
+    venue: b.classSession?.venue?.name,
+    city: b.classSession?.venue?.city,
+  })
+)
+  };
+},
 });
 
 // Export all tools
