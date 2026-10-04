@@ -72,7 +72,7 @@ export default function OnboardingPage() {
         <div className="container mx-auto flex h-16 items-center px-4">
           <div className="flex items-center gap-2">
             <Dumbbell className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">FitPass</span>
+            <span className="text-xl font-bold">FitCard</span>
           </div>
         </div>
       </header>

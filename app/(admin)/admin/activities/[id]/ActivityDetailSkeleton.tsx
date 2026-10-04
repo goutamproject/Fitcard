@@ -11,9 +11,9 @@ export function ActivityDetailSkeleton() {
         </div>
       </div>
       <div className="grid gap-6 lg:grid-cols-2">
-        <Skeleton className="h-[400px]" />
-        <Skeleton className="h-[400px]" />
-        <Skeleton className="h-[200px] lg:col-span-2" />
+        <Skeleton className="h-100" />
+        <Skeleton className="h-100" />
+        <Skeleton className="h-50 lg:col-span-2" />
       </div>
     </div>
   );

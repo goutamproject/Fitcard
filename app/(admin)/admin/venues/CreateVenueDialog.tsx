@@ -41,14 +41,14 @@ export function CreateVenueDialog() {
         description: formData.description || undefined,
         address: address
           ? {
-              fullAddress: address.address,
-              street: address.street,
-              city: address.city,
-              postcode: address.postcode,
-              country: address.country,
-              lat: address.lat,
-              lng: address.lng,
-            }
+            fullAddress: address.address,
+            street: address.street,
+            city: address.city,
+            postcode: address.postcode,
+            country: address.country,
+            lat: address.lat,
+            lng: address.lng,
+          }
           : undefined,
       });
       setFormData({ name: "", description: "" });
@@ -64,13 +64,13 @@ export function CreateVenueDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger
-  render={
-    <Button>
-      <Plus className="mr-2 h-4 w-4" />
-      New Venue
-    </Button>
-  }
-/>
+        render={
+          <Button>
+            <Plus className="mr-2 h-4 w-4" />
+            New Venue
+          </Button>
+        }
+      />
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>Create New Venue</DialogTitle>

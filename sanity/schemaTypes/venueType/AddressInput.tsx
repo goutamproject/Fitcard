@@ -59,7 +59,7 @@ export function AddressInput(props: ObjectInputProps) {
     setIsLoading(true);
     try {
       // Free, no API key. Respect Nominatim's usage policy:
-      // https://operations.osmfoundation.org/policies/nominatim/
+      
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?` +
           `q=${encodeURIComponent(searchQuery)}&format=json&addressdetails=1&limit=5`,

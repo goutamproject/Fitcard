@@ -280,7 +280,7 @@ export default async function ClassesPage({ searchParams }: PageProps) {
           </div>
 
           {/* Map Sidebar - Hidden on mobile/tablet, visible on xl screens */}
-          <aside className="hidden w-[400px] shrink-0 xl:block">
+          <aside className="hidden w-100 shrink-0 xl:block">
             <Card className="sticky top-20 h-[calc(100vh-8rem)] overflow-hidden p-0">
               <ClassesMapSidebar
                 venues={venuesForMap}

@@ -30,9 +30,9 @@ export function OnboardingGuard({ children }: OnboardingGuardProps) {
       | boolean
       | undefined;
 
-    /*if (!hasOnboarded) {
+    if (!hasOnboarded) {
       router.push("/onboarding");
-    }*/
+    }
   }, [isLoaded, user, pathname, router]);
 
   return <>{children}</>;

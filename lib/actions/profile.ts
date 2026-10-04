@@ -153,20 +153,32 @@ export async function getUserPreferences(): Promise<ProfilePreferences | null> {
       params: { clerkId: userId },
     });
 
-    if (!userProfile.data?.location || !userProfile.data?.searchRadius) {
+    const location = userProfile.data?.location;
+    const searchRadius = userProfile.data?.searchRadius;
+
+    if (
+      !location ||
+      typeof location.lat !== "number" ||
+      typeof location.lng !== "number" ||
+      !location.address ||
+      !searchRadius
+    ) {
       return null;
     }
 
     return {
-      location: userProfile.data.location,
-      searchRadius: userProfile.data.searchRadius,
+      location: {
+        lat: location.lat,
+        lng: location.lng,
+        address: location.address,
+      },
+      searchRadius,
     };
   } catch (error) {
     console.error("Get preferences error:", error);
     return null;
   }
 }
-
 // Redirect after onboarding completion
 export async function redirectAfterOnboarding() {
   redirect("/");
