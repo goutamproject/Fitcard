@@ -72,12 +72,14 @@ export function CreateSessionDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
-          <Plus className="mr-2 h-4 w-4" />
-          Schedule Session
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+  render={
+    <Button variant="outline" size="sm">
+      <Plus className="mr-2 h-4 w-4" />
+      Schedule Session
+    </Button>
+  }
+/>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Schedule New Session</DialogTitle>
@@ -89,7 +91,7 @@ export function CreateSessionDialog({
               <VenuePicker
                 value={formData.venueId}
                 onChange={(value) =>
-                  setFormData({ ...formData, venueId: value })
+                  setFormData({ ...formData, venueId: value ?? "null"})
                 }
               />
             </Suspense>

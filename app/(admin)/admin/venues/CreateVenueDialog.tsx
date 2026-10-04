@@ -63,12 +63,14 @@ export function CreateVenueDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button>
-          <Plus className="mr-2 h-4 w-4" />
-          New Venue
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+  render={
+    <Button>
+      <Plus className="mr-2 h-4 w-4" />
+      New Venue
+    </Button>
+  }
+/>
       <DialogContent className="max-w-lg">
         <DialogHeader>
           <DialogTitle>Create New Venue</DialogTitle>
