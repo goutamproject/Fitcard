@@ -50,7 +50,8 @@ export function SessionEditor({ sessionId }: SessionEditorProps) {
     ? new Date(startTime as string).toISOString().slice(0, 16)
     : "";
 
-  const handleVenueChange = (venueId: string) => {
+  const handleVenueChange = (venueId: string| null) => {
+    if (!venueId) return;
     editVenue({
       _type: "reference",
       _ref: venueId,
@@ -88,7 +89,7 @@ export function SessionEditor({ sessionId }: SessionEditorProps) {
           <Label htmlFor={`status-${sessionId}`}>Status</Label>
           <Select
             value={(status as string) ?? "scheduled"}
-            onValueChange={(value) => editStatus(value)}
+            onValueChange={(value) => {if(value) editStatus(value);}}
           >
             <SelectTrigger id={`status-${sessionId}`}>
               <SelectValue />
